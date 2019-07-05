@@ -8,10 +8,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MaterialModule} from './material-module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+
+import { LoaderComponent } from './components/shared/loader/loader.component';
+import { LoaderService } from './services/loader.service';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
+
+import { MaterialSearchComponent } from './components/material-search/material-search.component';
+import { MaterialTableComponent } from './components/material-table/material-table.component';
+
+
 @NgModule({
 
   declarations: [
-    AppComponent
+    AppComponent,
+    MaterialSearchComponent,
+    LoaderComponent,
+    MaterialTableComponent
   ],
   imports: [
     BrowserModule,
@@ -21,9 +36,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MaterialModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    
+    HttpClientModule
   ],
-  providers: [],
+  
+
+  providers: [LoaderService
+  ,    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
+  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

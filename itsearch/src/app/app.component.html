@@ -1,37 +1,20 @@
-<!--The content below is only a placeholder and can be replaced.-->
 
 <mat-toolbar>
-  <span>My Application</span>
+  <span>Itunes Search Angular</span>
 </mat-toolbar>
+<app-loader></app-loader>
+
+<mat-card>
+  <app-material-search (listChanged)="onQuery($event)"> </app-material-search>
+</mat-card>
 
 
 <mat-card>
-
-
-
-
-<form class="zform">
-  <mat-form-field class="">
-    <input matInput placeholder="Name" [formControl]="baseFormControl">
-    
-    <mat-error *ngIf="baseFormControl.hasError('required')">
-      Input is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Limit</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let limit of limits" [value]="limit.value">
-        {{limit.viewValue}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-</form> 
-
-
+  <app-material-table
+  [appleResponse]="appleResponse"
+  ></app-material-table>  
 </mat-card>
+
 
 
 <router-outlet></router-outlet>

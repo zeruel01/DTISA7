@@ -1,0 +1,27 @@
+
+
+  <mat-form-field class="" appearance="outline"  
+  [floatLabel]="always"
+  >
+    <input matInput placeholder="Term" 
+    [ngModel]="txtQuery"
+    (ngModelChange)="onFieldChange($event, input)"
+    >
+    
+    <mat-error *ngIf="baseFormControl.hasError('required')">
+      Input is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Limit</mat-label>
+    <mat-select  
+    (ngModelChange)="onLimitChange($event, input)"
+    [ngModel]="limit"
+    
+    >
+      <mat-option *ngFor="let limit of limits" [value]="limit.value">
+        {{limit.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>

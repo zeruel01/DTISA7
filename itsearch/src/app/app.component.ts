@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import { Limit } from './models/limit';
+import { Limit} from './models/limit';
+import { Song} from './models/song';
+import { AppleResponse } from './models/appleresponse';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +11,15 @@ import { Limit } from './models/limit';
 })
 export class AppComponent {
 
-  //title = 'itsearch';
+  appleResponse:Song[];  //{resultCount:0,results:Song[]};
 
-  baseFormControl = new FormControl('', [
-    Validators.required,    
-  ]);
+  constructor(){
+  }
+  
 
-  limits: Limit[] = [
-    {value: 10, viewValue: '10'},
-    {value: 15, viewValue: '15'},
-    {value: 20, viewValue: '20'}
-  ];
-
+ onQuery(data:AppleResponse) {
+   this.appleResponse=data.results;
+    
+  }
 
 }

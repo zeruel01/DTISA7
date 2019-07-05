@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-//import { Http, Headers } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
+import { AppleResponse } from '../models/appleresponse';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +18,10 @@ export class MusicService {
     this.rootURL = `${environment.baseUrl}`;
    }
 
-   public getElements(term,limit): any {
+   public  getElements(term,limit): any {
 
-    this.url = `${this.rootURL}/search?term=${term}%limit=${limit}`;
-    return this.httpClient.get(this.url+"");
-    // .map((res: any) => res.json());
+    this.url = `${this.rootURL}/search?term=${term}&limit=${limit}`;
+    return  this.httpClient.get(this.url);
+    
   }
 }
